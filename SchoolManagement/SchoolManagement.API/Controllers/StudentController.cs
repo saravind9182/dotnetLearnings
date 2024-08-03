@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.API.Models.Domain;
 using SchoolManagement.API.Models.DTO;
 using SchoolManagement.API.Repositories.Interfaces;
@@ -7,6 +8,7 @@ namespace SchoolManagement.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class StudentController : Controller
     {
         private readonly IStudentRepository _studentRepository;
@@ -14,7 +16,7 @@ namespace SchoolManagement.API.Controllers
         public StudentController(IStudentRepository studentRepository)
         {
             _studentRepository = studentRepository;
-        }
+        }   
         [HttpGet]
         public IActionResult GetAll()
         {
